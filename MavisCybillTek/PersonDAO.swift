@@ -9,14 +9,16 @@
 import Foundation
 import UIKit
 import CoreData
+
+var task = URLSessionDataTask()
+
 class PersonDAO{
-    
     
     static func getPersonData(){
         let path = "https://www.dropbox.com/s/sxrxgzt4lx9ci9c/Person.json?dl=1"
         let url = URL(string: path)
         let session = URLSession.shared
-        let task = session.dataTask(with: url!) {(data,res,error) in
+        task = session.dataTask(with: url!) {(data,res,error) in
             if let e = error{
                 print("Error:\(e)")
                 return
@@ -37,6 +39,7 @@ class PersonDAO{
                             p.contactPersonNumber = person["ContactPersonPhone"] as? String
                             do {
                                 try moc.save()
+                                NotificationCenter.default.post(name: Notification.Name("Finish"), object: nil)
                             } catch {
                                 fatalError("\(error)")
                             }
@@ -45,7 +48,6 @@ class PersonDAO{
                 }
             }
         task.resume()
-        task.cancel()
     }
     
     static func deleteCoreData(){

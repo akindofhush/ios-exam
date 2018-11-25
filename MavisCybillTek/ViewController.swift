@@ -9,10 +9,24 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+import UIKit
+import CoreData
 
+class ViewController: UIViewController {
+    var personList:[Person] = []
+    @IBOutlet var clickButton: UIButton!
+    
+    @objc func clickStatus(noti:Notification){
+        clickButton.setTitleColor(.black, for: .normal)
+        clickButton.isEnabled = true
+        task.cancel()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        clickButton.setTitleColor(.gray, for: .normal)
+        clickButton.isEnabled = false
+        NotificationCenter.default.addObserver(self, selector: #selector(clickStatus(noti:)), name: NSNotification.Name("Finish"), object: nil)
         PersonDAO.getPersonData()
         //cover the data with the same constraints data
         let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
@@ -23,7 +37,12 @@ class ViewController: UIViewController {
                 print("Unresolved error \(error)")
             }
         }
+        PersonDAO.getPersonDataFromCoreData(list: &personList)
+        if personList.count == 0 {
+            
+        }
         
     }
 }
+
 
