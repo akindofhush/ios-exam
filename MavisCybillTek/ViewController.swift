@@ -15,15 +15,19 @@ import CoreData
 class ViewController: UIViewController {
     var personList:[Person] = []
     @IBOutlet var clickButton: UIButton!
+    @IBOutlet var loadingStatus: UIActivityIndicatorView!
     
     @objc func clickStatus(noti:Notification){
         clickButton.setTitleColor(.black, for: .normal)
         clickButton.isEnabled = true
+        loadingStatus.stopAnimating()
+        loadingStatus.hidesWhenStopped = true
         task.cancel()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingStatus.startAnimating()
         clickButton.setTitleColor(.gray, for: .normal)
         clickButton.isEnabled = false
         NotificationCenter.default.addObserver(self, selector: #selector(clickStatus(noti:)), name: NSNotification.Name("Finish"), object: nil)

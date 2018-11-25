@@ -17,21 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53W-jk-vXI">
-                                <rect key="frame" x="170" y="318" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53W-jk-vXI">
+                                <rect key="frame" x="170.5" y="318.5" width="34" height="30"/>
                                 <state key="normal" title="Click"/>
                                 <connections>
                                     <segue destination="bzx-8u-8cE" kind="show" id="YkG-oe-ze6"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3gi-mo-cZX">
+                                <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="cCl-yj-qBo"/>
+                                    <constraint firstAttribute="width" constant="40" id="jgq-CK-fDd"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="53W-jk-vXI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ocJ-DG-JQ6"/>
+                            <constraint firstItem="53W-jk-vXI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rs5-a4-FhK"/>
+                            <constraint firstItem="3gi-mo-cZX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tw8-wy-BZr"/>
+                            <constraint firstItem="3gi-mo-cZX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="usV-kb-35N"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Cil-oM-X2P"/>
                     <connections>
                         <outlet property="clickButton" destination="53W-jk-vXI" id="Oon-ip-0BX"/>
+                        <outlet property="loadingStatus" destination="3gi-mo-cZX" id="a3f-3G-ugQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
